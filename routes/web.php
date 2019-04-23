@@ -64,6 +64,11 @@ Route::group(['middleware' => ['web']], function () {
         'as' => 'post.delete',
         'middleware' => 'auth'
     ]);
+    //account-user
+    Route::get('/user-account/{user_id}', [
+       'uses' => 'UserController@getUserAccount',
+       'as' => 'user.account'
+    ]);
 
     Route::post('/edit', [
         'uses' => 'PostController@postEditPost',

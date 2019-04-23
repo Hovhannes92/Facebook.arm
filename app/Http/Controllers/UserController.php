@@ -81,6 +81,13 @@ class UserController extends Controller
         $file = Storage::disk('local')->get($filename);
         return new Response($file, 200);
     }
+
+    //account-user
+    public function getUserAccount($user_id)
+    {
+        $user = User::where('id', $user_id)->first();
+        return view('user-account', ['user' => $user]);
+    }
 }
 
 

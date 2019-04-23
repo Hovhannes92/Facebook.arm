@@ -7,7 +7,7 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="nav navbar-nav pull-right" >
+            <ul class="nav navbar-nav pull-right">
                 <li><a href="{{ route('account') }}">Account |</a></li>
                 <li><a href="{{ route('logout') }}">  | Logout</a></li>
             </ul>

@@ -22,7 +22,7 @@
                 <article class="post" data-postid="{{ $post->id }}">
                     <p>{{ $post->body }}</p>
                     <div class="info">
-                        Posted by {{ $post->user->first_name }} on {{ $post->created_at }}
+                        Posted by <a href="{{ route('user.account', ['user_id' => $post->user->id]) }}">{{ $post->user->first_name }}</a> on {{ $post->created_at }}
                     </div>
                     <div class="interaction">
                         <a href="#" class="like">{{ Auth::user()->likes()->where('post_id', $post->id)->first() ? Auth::user()->likes()->where('post_id', $post->id)->first()->like == 1 ? 'You like this post' : 'Like' : 'Like'  }}</a> |
