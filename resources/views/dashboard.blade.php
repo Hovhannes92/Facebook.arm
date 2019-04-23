@@ -36,7 +36,7 @@
 
                         <div class="detailBox">
                             <div class="titleBox">
-                                <form  action="{{ route('comments.create') }}" method="post" class="form-inline">
+                                <form  action="{{ route('comments.create', $post->id) }}" method="post" class="form-inline">
                                     <div class="form-group">
                                         <input name="text" class="form-control" type="text" placeholder="Your comments" >
                                     </div>
