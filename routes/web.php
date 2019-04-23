@@ -80,4 +80,10 @@ Route::group(['middleware' => ['web']], function () {
         'as' => 'like'
     ]);
 
+    Route::post('/comments',  [
+        'uses' => 'CommentController@postCreateComment',
+        'as' => 'comments.create',
+        'middleware' => 'auth'
+    ]);
+
 });

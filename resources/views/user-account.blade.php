@@ -139,36 +139,38 @@
                         <button type="button" class="btn btn-success btn-sm">Follow</button>
                         <button type="button" class="btn btn-danger btn-sm">Message</button>
                     </div>
-                    <!-- END SIDEBAR BUTTONS -->
-                    {{--<!-- SIDEBAR MENU -->--}}
-                    {{--<div class="profile-usermenu">--}}
-                        {{--<ul class="nav">--}}
-                            {{--<li class="active">--}}
-                                {{--<a href="#">--}}
-                                    {{--<i class="glyphicon glyphicon-home"></i>--}}
-                                    {{--Overview </a>--}}
-                            {{--</li>--}}
-                            {{--<li>--}}
-                                {{--<a href="#">--}}
-                                    {{--<i class="glyphicon glyphicon-user"></i>--}}
-                                    {{--Account Settings </a>--}}
-                            {{--</li>--}}
-                            {{--<li>--}}
-                                {{--<a href="#" target="_blank">--}}
-                                    {{--<i class="glyphicon glyphicon-ok"></i>--}}
-                                    {{--Tasks </a>--}}
-                            {{--</li>--}}
-                            {{--<li>--}}
-                                {{--<a href="#">--}}
-                                    {{--<i class="glyphicon glyphicon-flag"></i>--}}
-                                    {{--Help </a>--}}
-                            {{--</li>--}}
-                        {{--</ul>--}}
-                    {{--</div>--}}
-                    {{--<!-- END MENU -->--}}
+
+                    <section class="row posts">
+                        <div class="col-md-6 col-md-offset-3">
+                            @foreach($posts as $post)
+                                <article class="post" data-postid="{{ $post->id }}">
+                                    <p>{{ $post->body }}</p>
+                                    <div class="info">
+                                        Posted by <a href="{{ route('user.account', ['user_id' => $post->user->id]) }}">{{ $post->user->first_name }}</a> on {{ $post->created_at }}
+                                    </div>
+                                    <div class="interaction">
+                                        <a href="#" class="like">{{ Auth::user()->likes()->where('post_id', $post->id)->first() ? Auth::user()->likes()->where('post_id', $post->id)->first()->like == 1 ? 'You like this post' : 'Like' : 'Like'  }}</a> |
+                                        <a href="#" class="like">{{ Auth::user()->likes()->where('post_id', $post->id)->first() ? Auth::user()->likes()->where('post_id', $post->id)->first()->like == 0 ? 'You don\'t like this post' : 'Dislike' : 'Dislike'  }}</a>
+                                        @if(Auth::user() == $post->user)
+                                            |
+                                            <a href="#" class="edit">Edit</a> |
+                                            <a href="{{ route('post.delete', ['post_id' => $post->id]) }}">Delete</a>
+                                        @endif
+                                    </div>
+                                </article>
+                            @endforeach
+                        </div>
+                    </section>
+
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+        var token = '{{ Session::token() }}';
+        var urlEdit = '{{ route('edit') }}';
+        var urlLike = '{{ route('like') }}';
+    </script>
 
 @endsection

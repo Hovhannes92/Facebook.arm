@@ -33,6 +33,22 @@
                             <a href="{{ route('post.delete', ['post_id' => $post->id]) }}">Delete</a>
                         @endif
 
+
+                        <div class="detailBox">
+                            <div class="titleBox">
+                                <form  action="{{ route('comments.create') }}" method="post" class="form-inline">
+                                    <div class="form-group">
+                                        <input name="text" class="form-control" type="text" placeholder="Your comments" >
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-default">Add</button>
+                                        <input type="hidden" value="{{ Session::token() }}" name="_token">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+
                     </div>
                 </article>
             @endforeach

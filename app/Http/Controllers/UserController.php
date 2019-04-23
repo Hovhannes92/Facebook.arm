@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Post;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -85,8 +86,9 @@ class UserController extends Controller
     //account-user
     public function getUserAccount($user_id)
     {
+        $posts = Post::where('user_id', $user_id)->get();
         $user = User::where('id', $user_id)->first();
-        return view('user-account', ['user' => $user]);
+        return view('user-account', ['user' => $user, 'posts' => $posts]);
     }
 }
 

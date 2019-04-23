@@ -127,3 +127,14 @@ body {
     background: #F1F3FA;
 }
 
+/*taza stylles*/
+
+.detailBox {
+    width:320px;
+    border:1px solid #bbb;
+    margin:50px;
+}
+.titleBox {
+    background-color:#fdfdfd;
+    padding:10px;
+}
