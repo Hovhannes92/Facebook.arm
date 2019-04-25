@@ -15,11 +15,14 @@ class CommentController extends Controller
             'body' => 'required|max:500'
         ]);
 
-        $comment = new Comment();
-        $comment->body = $request->body;
-        $comment->user_id = Auth::id();
+        $comment = $post->comments()->create([
+            'body' => $request->body,
+            'user_id' => Auth::id()
+        ]);
 
-        $post->comments()->save($comment);
+        $comment = Comment::where('id', $comment->id)->with('user')->first();
+
+        return $comment;
 
         return redirect()->route('dashboard');
     }
