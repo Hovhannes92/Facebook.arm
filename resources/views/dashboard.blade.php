@@ -38,7 +38,7 @@
                             <div class="titleBox">
                                 <form  action="{{ route('comments.create', $post->id) }}" method="post" class="form-inline">
                                     <div class="form-group">
-                                        <input name="text" class="form-control" type="text" placeholder="Your comments" >
+                                        <input name="text"  class="form-control" type="text" placeholder="Your comments" >
                                     </div>
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-default">Add</button>

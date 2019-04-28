@@ -3,26 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Comment;
+use App\Http\Requests\CreateCommentRequest;
 use App\Post;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
-    public function postCreateComment(Request $request, Post $post)
+    public function postCreateComment(CreateCommentRequest $request, Post $post)
     {
-        $this->validate($request, [
-            'body' => 'required|max:500'
-        ]);
+//        dd($request->all());
+//        $this->validate($request, [
+//            'text' => 'required|max:500'
+//        ]);
 
-        $comment = $post->comments()->create([
-            'body' => $request->body,
-            'user_id' => Auth::id()
-        ]);
+        $comment = new Comment();
+        $comment->text = $request->text;
+        $comment->user_id = Auth::id();
 
-        $comment = Comment::where('id', $comment->id)->with('user')->first();
-
-        return $comment;
+        $post->comments()->save($comment);
 
         return redirect()->route('dashboard');
     }
