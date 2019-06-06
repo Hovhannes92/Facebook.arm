@@ -22,6 +22,8 @@ class CommentController extends Controller
 
         $post->comments()->save($comment);
 
+        $post->comments()->create($request->all());
+
         return redirect()->route('dashboard');
     }
 
