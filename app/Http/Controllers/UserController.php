@@ -14,13 +14,14 @@ use Illuminate\Support\Facades\Storage;
 class UserController extends Controller
 {
 
+
+
     public function postSignUp(PostSignUpRequest $request)
     {
 
-
-        Auth::login($user);
-
         $request->persist();
+
+        Auth::login($request->getUser());
 
         return redirect()->route('dashboard');
     }

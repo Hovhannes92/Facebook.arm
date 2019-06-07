@@ -16,7 +16,7 @@ class PostSignUpRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -36,8 +36,6 @@ class PostSignUpRequest extends FormRequest
     public function persist()
     {
         $this->user = User::create($this->all());
-
-        $this->user = bcrypt($this['password']);
 
         return $this;
     }
